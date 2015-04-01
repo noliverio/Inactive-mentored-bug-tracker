@@ -3,13 +3,14 @@ import bzrest.client
 # without it an insecure platform warning is raised.
 import urllib3.contrib.pyopenssl
 urllib3.contrib.pyopenssl.inject_into_urllib3()
+import login_info
 
 
 class inactive_bug_tracker(object):
     def __init__(self):
         # set the params for the program
-        self.username = ''
-        self.password = ''
+        self.username = login_info.username
+        self.password = login_info.password
         # Post this message as a comment on the bug
         # Reassign the bug to the default assignee
         self.reset_message = """I have reset the assignee as a part of an
@@ -41,6 +42,15 @@ class inactive_bug_tracker(object):
             if bug['mentors']:
                 inactive_mentored_bugs.append(bug)
         return inactive_mentored_bugs
+
+    def leave_reset_message(self):
+        pass
+    
+    def revert_assignee_to_default(self):
+        pass
+
+    def request_needinfo(self):
+        pass
 
     def main(self):
         self.bz.configure(self.bzurl, self.username, self.password)
