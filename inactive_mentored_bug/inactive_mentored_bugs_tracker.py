@@ -65,12 +65,16 @@ class inactive_bug_tracker(object):
 
     def main(self):
         self.bz.configure(self.bzurl, self.username, self.password)
+        print 'fetching bugs'
         self.inactive_bugs = get_inactive_mentored_bugs()
+        print 'reseting bugs'
         for bug in self.inactive_bugs:
             self.leave_resest_message(bug['id'])
             self.request_needinfo(bug)
             self.revert_assignee_to_default(bug['id'])
+        print 'finished reseting bugs'
 
 
 if __name__ == '__main__':
     IMBT = inactive_bug_tracker()
+    IMBT.main()
