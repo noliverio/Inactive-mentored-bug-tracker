@@ -1,6 +1,6 @@
 # IMBT
 
-This is in response to mozilla bugzilla bug 1128878 (https://bugzilla.mozilla.org/show_bug.cgi?id=1128878) quoted below 
+This is in response to mozilla bugzilla bug 1128878 (https://bugzilla.mozilla.org/show_bug.cgi?id=1128878) requested by Josh Matthews quoted below 
 
 It's common to find mentored bugs that have been assigned to a contributor weeks or months ago, with no subsequent followup from the assignee. This is currently handled on an ad-hoc basis; I propose writing a tool that will perform the following steps:
 
