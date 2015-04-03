@@ -1,5 +1,9 @@
 # IMBT
 
+To run the script enter the pertinent information into login_info.py and run inactive_mentored_bugs_tracker.py from the command line.
+
+Due to the nature of the bzrest library used this is not python 3 compatible.
+
 This is in response to mozilla bugzilla bug 1128878 (https://bugzilla.mozilla.org/show_bug.cgi?id=1128878) requested by Josh Matthews quoted below 
 
 It's common to find mentored bugs that have been assigned to a contributor weeks or months ago, with no subsequent followup from the assignee. This is currently handled on an ad-hoc basis; I propose writing a tool that will perform the following steps:
