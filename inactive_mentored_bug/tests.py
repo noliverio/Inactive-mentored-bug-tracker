@@ -10,7 +10,7 @@ class Testimbtscript(unittest.TestCase):
         # user running the test enters bugzilla login information here #
         self.username = login_info.username
         self.password = login_info.password
-        self.bzurl = "https://landfill.bugzilla.org/bugzilla-tip/rest/"
+        self.bzurl = login_info.bugzilla_instance
         self.length_of_inactivity_period = 30
         self.test_params = """f1=days_elapsed&list_id=10008579&o1=equals&query
         _format=advanced&bug_status=ASSIGNED&v1=%s""" % self.length_of_inactivity_period
@@ -37,14 +37,6 @@ class Testimbtscript(unittest.TestCase):
             print 'a bug report for this test'
             self.assertIs(type(inactive_mentored_bugs), list)
 
-    def test_leave_reset_message(self):
-        self.assertTrue(False)
-
-    def test_revert_assignee_to_default(self):
-        self.assertTrue(False)
-    
-    def test_request_needinfo(self):
-        self.assertTrue(False)
 
 if __name__ == '__main__':
     unittest.main()
