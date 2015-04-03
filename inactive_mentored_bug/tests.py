@@ -7,7 +7,6 @@ class Testimbtscript(unittest.TestCase):
 
     def setUp(self):
         self.tracker = imbt.inactive_bug_tracker()
-        # user running the test enters bugzilla login information here #
         self.username = login_info.username
         self.password = login_info.password
         self.bzurl = login_info.bugzilla_instance
