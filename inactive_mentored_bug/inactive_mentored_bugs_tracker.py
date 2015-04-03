@@ -1,8 +1,8 @@
 import bzrest.client
-# this is necessary to create a secure connection
-# without it an insecure platform warning is raised.
-import urllib3.contrib.pyopenssl
-urllib3.contrib.pyopenssl.inject_into_urllib3()
+# # this is necessary to create a secure connection
+# # without it an insecure platform warning is raised.
+# import urllib3.contrib.pyopenssl
+# urllib3.contrib.pyopenssl.inject_into_urllib3()
 import login_info
 
 
@@ -17,7 +17,7 @@ class inactive_bug_tracker(object):
         automated cleanup since there has been no visible activity in this bug
         for some time. If this is incorrect, please let me know
         and I'll correct the error"""
-        self.default_assignee = "nobody@mozilla.org"
+        self.default_assignee = login_info.default_assignee
         self.bzurl = "http://bugzilla.mozilla.org/rest"
 
         # This search will return all bugs that meet the following criteria:
@@ -43,18 +43,22 @@ class inactive_bug_tracker(object):
                 inactive_mentored_bugs.append(bug)
         return inactive_mentored_bugs
 
-    def leave_reset_message(self):
-        pass
+    def leave_reset_message(self, id):
+        self.bz.add_comment(id_ = id, comment = self.reset_message)
     
-    def revert_assignee_to_default(self):
-        pass
+    def revert_assignee_to_default(self, id):
+        self.bz.update_bug(id_ = id, data = {'assigned_to':self.default_assignee, 'status': 'NEW'})
 
-    def request_needinfo(self):
+    def request_needinfo(self, id):
         pass
 
     def main(self):
         self.bz.configure(self.bzurl, self.username, self.password)
-        inactive_bugs = get_bugs()
+        self.inactive_bugs = get_inactive_mentored_bugs()
+        for bug in self.inactive_bugs:
+            self.leave_resest_message(bug['id'])
+            self.revert_assignee_to_default(bug['id'])
+            self.request_needinfo(bug['id'])
 
 
 if __name__ == '__main__':

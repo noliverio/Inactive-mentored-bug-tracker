@@ -10,7 +10,7 @@ class Testimbtscript(unittest.TestCase):
         # user running the test enters bugzilla login information here #
         self.username = login_info.username
         self.password = login_info.password
-        self.bzurl = "http://bugzilla.mozilla.org/rest"
+        self.bzurl = "https://landfill.bugzilla.org/bugzilla-tip/rest/"
         self.length_of_inactivity_period = 30
         self.test_params = """f1=days_elapsed&list_id=10008579&o1=equals&query
         _format=advanced&bug_status=ASSIGNED&v1=%s""" % self.length_of_inactivity_period
