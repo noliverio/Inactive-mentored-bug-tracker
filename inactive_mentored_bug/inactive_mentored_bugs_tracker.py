@@ -33,12 +33,9 @@ class inactive_bug_tracker(object):
         query_format=advanced&bug_status=ASSIGNED&v1=%s""" % self.length_of_inactivity_period
         self.bz = bzrest.client.BugzillaClient()
     
-    ## These are two are just further wrappers around the api
+    ## This is just further wrappers around the api
     def search_bugs(self, search_params, data=None):
         return self.bz.request("GET", "bug? % s" % search_params, data)
-
-    def get_latest_comment(self, id_, data = None):
-        return self.bz.request("GET", "bug/%s/comment" % id_, data)['bugs']["%i"%id_]['comments'][-1]
         
 
     def get_inactive_mentored_bugs(self):

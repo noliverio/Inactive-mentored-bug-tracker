@@ -7,6 +7,7 @@ first_test = 1
 class Testimbtscript(unittest.TestCase):
 
     def setUp(self):
+        global first_test
         self.tracker = imbt.inactive_bug_tracker()
         self.username = login_info.username
         self.password = login_info.password
@@ -27,6 +28,9 @@ class Testimbtscript(unittest.TestCase):
     def tearDown(self):
         self.tracker = None
 
+    def get_latest_comment(self, id_, data = None):
+        return self.bz.request("GET", "bug/%s/comment" % id_, data)['bugs']["%i"%id_]['comments'][-1]
+
     def test_revert_assignee_to_default(self):
         self.tracker.revert_assignee_to_default(self.bug['id'])
         self.updated_bug = self.tracker.bz.get_bug(self.bug['id'])
@@ -34,7 +38,7 @@ class Testimbtscript(unittest.TestCase):
 
     def test_leave_reset_message(self):
         self.tracker.leave_reset_message(self.bug['id'])
-        message = self.tracker.get_latest_comment(self.bug['id'])['text']
+        message = self.get_latest_comment(self.bug['id'])['text']
         self.assertEquals(message, self.tracker.reset_message)
         
     def test_request_needinfo(self):
