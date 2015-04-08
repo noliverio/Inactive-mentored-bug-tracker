@@ -16,7 +16,7 @@ class Testimbtscript(unittest.TestCase):
         self.test_params = {'f1': 'bug_mentor',
                             'o1': 'isnotempty',
                             'f2': 'days_elapsed',
-                            'o2': 'equals',
+                            'o2': 'greaterthan',
                             'v2': 30,
                             'f3': 'assigned_to',
                             'o3': 'notequals',

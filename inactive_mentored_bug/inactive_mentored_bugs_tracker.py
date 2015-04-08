@@ -34,7 +34,7 @@ class inactive_bug_tracker(object):
         self.search_params = {'f1': 'bug_mentor',
                               'o1': 'isnotempty',
                               'f2': 'days_elapsed',
-                              'o2': 'equals',
+                              'o2': 'greaterthan',
                               'v2': self.length_of_inactivity_period,
                               'f3': 'assigned_to',
                               'o3': 'notequals',
