@@ -12,11 +12,16 @@ class Testimbtscript(unittest.TestCase):
         self.username = login_info.username
         self.password = login_info.password
         self.bzurl = login_info.bugzilla_instance
-        self.default_assignee = login_info.default_assignee
-        
         self.length_of_inactivity_period = 30
-        self.test_params = ("f1=days_elapsed&list_id=10008579&o1=equals&query"
-        "_format=advanced&bug_status=ASSIGNED&v1=%s" % self.length_of_inactivity_period)
+        self.test_params = {'f1': 'bug_mentor',
+                            'o1': 'isnotempty',
+                            'f2': 'days_elapsed',
+                            'o2': 'equals',
+                            'v2': 30,
+                            'f3': 'assigned_to',
+                            'o3': 'notequals',
+                            'v3': login_info.default_assignee,
+                              }
         self.tracker.bz.configure(self.bzurl, self.username, self.password)
         # select one bug to use throughout the tests
         if first_test:
