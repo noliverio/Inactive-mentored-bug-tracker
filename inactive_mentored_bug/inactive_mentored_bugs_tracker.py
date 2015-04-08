@@ -29,13 +29,18 @@ class inactive_bug_tracker(object):
         ## change 'length_on_inactivity_period' to extend or decrease
         ## how long an assigned mentored bug can be inactive
         self.length_of_inactivity_period = 30
-        self.search_params = """f1=days_elapsed&list_id=10008579&o1=equals&
-        query_format=advanced&bug_status=ASSIGNED&v1=%s""" % self.length_of_inactivity_period
+        self.search_params = { 'f1': 'days_elapsed',
+                               'o1': self.length_of_inactivity_period,
+                               'bug_status' = 'ASSIGNED'
+                              }
         self.bz = bzrest.client.BugzillaClient()
     
     ## This is just further wrappers around the api
-    def search_bugs(self, search_params, data=None):
-        return self.bz.request("GET", "bug? % s" % search_params, data)
+    ## With the params above it will return just the inactive mentored bugs
+    def search_bugs(self, data):
+        param_list = ["%s=%s"%(key,data[key]) for key in data]
+        params = '&'.join(param_list)
+        return self.bz.request("GET", "bug?%s" % params)
         
 
     def get_inactive_mentored_bugs(self):

@@ -11,8 +11,10 @@ class Testimbtscript(unittest.TestCase):
         self.password = login_info.password
         self.bzurl = login_info.bugzilla_instance
         self.length_of_inactivity_period = 30
-        self.test_params = """f1=days_elapsed&list_id=10008579&o1=equals&query
-        _format=advanced&bug_status=ASSIGNED&v1=%s""" % self.length_of_inactivity_period
+        self.test_params = {  'f1': 'days_elapsed',
+                              'o1': self.length_of_inactivity_period,
+                              'bug_status': 'ASSIGNED'
+                              }
         self.tracker.bz.configure(self.bzurl, self.username, self.password)
 
     def tearDown(self):
