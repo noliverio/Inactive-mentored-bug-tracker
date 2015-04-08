@@ -29,11 +29,13 @@ class inactive_bug_tracker(object):
         ## change 'length_on_inactivity_period' to extend or decrease
         ## how long an assigned mentored bug can be inactive
         self.length_of_inactivity_period = 30
-        self.search_params = { 'f1': 'days_elapsed',
-                               'o1': self.length_of_inactivity_period,
-                               'f2': 'assigned_to',
-                               'o2': 'notequals',
-                               'v2': login_info.default_assignee,
+        self.search_params = {'f1': 'bug_mentor',
+                              'o1': 'isnotempty',
+                              'f2': 'days_elapsed',
+                              'o2': self.length_of_inactivity_period,
+                              'f3': 'assigned_to',
+                              'o3': 'notequals',
+                              'v3': login_info.default_assignee,
                               }
         self.bz = bzrest.client.BugzillaClient()
     
