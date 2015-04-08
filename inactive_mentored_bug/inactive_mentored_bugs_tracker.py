@@ -25,7 +25,7 @@ class inactive_bug_tracker(object):
         self.bzurl = login_info.bugzilla_instance
 
         ## This search will return all bugs that meet the following criteria:
-        ## 1) The bug is has mentors
+        ## 1) The bug has mentors
         ## 2) There have been no updates in the last 30 days
         ## 3) The bug is assigned to someone, not the default assignee
         ## change 'length_on_inactivity_period' to extend or decrease
