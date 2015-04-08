@@ -40,14 +40,7 @@ class Testimbtscript(unittest.TestCase):
         self.tracker.leave_reset_message(self.bug['id'])
         message = self.get_latest_comment(self.bug['id'])['text']
         self.assertEquals(message, self.tracker.reset_message)
-        
-    def test_request_needinfo(self):
-        self.tracker.request_needinfo(self.bug)
-        self.updated_bug = self.tracker.bz.get_bug(self.bug['id'])
-        try:
-            self.assertTrue(self.updated_bug['flags'][0]['name'] == 'needinfo')
-        except KeyError:
-            self.assertTrue(False)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -65,12 +65,6 @@ class inactive_bug_tracker(object):
     def revert_assignee_to_default(self, id):
         self.bz.update_bug(id_ = id, data = {'assigned_to':self.default_assignee})
 
-    def request_needinfo(self, bug):
-        # there has got to be a better way than this, but I can not find a way to avoid the nesting
-        data =  {'flags': [{"name": "needinfo", "status":"?", "requestee": "%s" % bug['assigned_to']}]}
-        id = bug['id']
-        self.bz.update_bug(id_ = id, data = data)
-
     def main(self):
         self.bz.configure(self.bzurl, self.username, self.password)
         print 'fetching bugs'
@@ -78,7 +72,6 @@ class inactive_bug_tracker(object):
         print 'reseting bugs'
         for bug in self.inactive_bugs:
             self.leave_resest_message(bug['id'])
-            self.request_needinfo(bug)
             self.revert_assignee_to_default(bug['id'])
         print 'finished reseting bugs'
 
