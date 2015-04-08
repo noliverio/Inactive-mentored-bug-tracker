@@ -24,14 +24,16 @@ class inactive_bug_tracker(object):
         self.bzurl = login_info.bugzilla_instance
 
         ## This search will return all bugs that meet the following criteria:
-        ## 1) The bug is assigned to someone
+        ## 1) The bug is assigned to someone, not the default assignee
         ## 2) There have been no updates in the last 30 days
         ## change 'length_on_inactivity_period' to extend or decrease
         ## how long an assigned mentored bug can be inactive
         self.length_of_inactivity_period = 30
         self.search_params = { 'f1': 'days_elapsed',
                                'o1': self.length_of_inactivity_period,
-                               'bug_status' = 'ASSIGNED'
+                               'f2': 'assigned_to',
+                               'o2': 'notequals',
+                               'v2': login_info.default_assignee,
                               }
         self.bz = bzrest.client.BugzillaClient()
     

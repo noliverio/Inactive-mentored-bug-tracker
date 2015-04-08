@@ -13,7 +13,9 @@ class Testimbtscript(unittest.TestCase):
         self.length_of_inactivity_period = 30
         self.test_params = {  'f1': 'days_elapsed',
                               'o1': self.length_of_inactivity_period,
-                              'bug_status': 'ASSIGNED'
+                              'f2': 'assigned_to',
+                              'o2': 'notequals',
+                              'v2': login_info.default_assignee,
                               }
         self.tracker.bz.configure(self.bzurl, self.username, self.password)
 
