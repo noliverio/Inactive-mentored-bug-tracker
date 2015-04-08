@@ -74,7 +74,7 @@ class inactive_bug_tracker(object):
     def main(self):
         self.bz.configure(self.bzurl, self.username, self.password)
         print 'fetching bugs'
-        self.inactive_bugs = get_inactive_mentored_bugs()
+        self.inactive_bugs = self.get_inactive_mentored_bugs()
         print 'reseting bugs'
         for bug in self.inactive_bugs:
             self.leave_resest_message(bug['id'])
