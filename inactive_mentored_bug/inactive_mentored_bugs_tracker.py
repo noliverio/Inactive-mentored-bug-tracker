@@ -39,6 +39,7 @@ class inactive_bug_tracker(object):
                               'f3': 'assigned_to',
                               'o3': 'notequals',
                               'v3': login_info.default_assignee,
+                              'resolution': "---",
                               }
         self.bz = bzrest.client.BugzillaClient()
     

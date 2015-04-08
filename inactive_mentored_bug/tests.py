@@ -19,6 +19,7 @@ class Testimbtscript(unittest.TestCase):
                             'f3': 'assigned_to',
                             'o3': 'notequals',
                             'v3': login_info.default_assignee,
+                            'resolution': "---",
                               }
         self.tracker.bz.configure(self.bzurl, self.username, self.password)
 
