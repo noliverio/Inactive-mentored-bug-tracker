@@ -1,4 +1,5 @@
 import bzrest.client
+import sys
 ## this is necessary to create a secure connection
 ## without it an insecure platform warning is raised.
 import urllib3.contrib.pyopenssl
@@ -52,11 +53,11 @@ class inactive_bug_tracker(object):
         ## returns a dict with one entry named 'bugs'
         bugs = self.search_bugs(self.search_params)
         list_of_bugs = bugs['bugs']
-        inactive_mentored_bugs = []
-        for bug in list_of_bugs:
-            if bug['mentors']:
-                inactive_mentored_bugs.append(bug)
-        return inactive_mentored_bugs
+        if list_of_bugs:
+            return list_of_bugs
+        else:
+            print 'No bugs were found'
+            sys.exit()
 
     def leave_reset_message(self, id):
         self.bz.add_comment(id_ = id, comment = self.reset_message)
