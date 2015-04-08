@@ -30,7 +30,7 @@ class inactive_bug_tracker(object):
         ## 3) The bug is assigned to someone, not the default assignee
         ## change 'length_on_inactivity_period' to extend or decrease
         ## how long an assigned mentored bug can be inactive
-        self.length_of_inactivity_period = 30
+        self.length_of_inactivity_period = 21
         self.search_params = {'f1': 'bug_mentor',
                               'o1': 'isnotempty',
                               'f2': 'days_elapsed',

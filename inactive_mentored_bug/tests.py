@@ -10,7 +10,7 @@ class Testimbtscript(unittest.TestCase):
         self.username = login_info.username
         self.password = login_info.password
         self.bzurl = login_info.bugzilla_instance
-        self.length_of_inactivity_period = 30
+        self.length_of_inactivity_period = 21
         self.test_params = {'f1': 'bug_mentor',
                             'o1': 'isnotempty',
                             'f2': 'days_elapsed',
