@@ -79,14 +79,15 @@ class inactive_bug_tracker(object):
         print 'finished reseting bugs'
 
     def dry(self):
-        def pretty_json(ugly_json):
-            print json.dumps(ugly_json, sort_keys=True, indent=4, separators=(',', ':'))
         self.bz.configure(self.bzurl, self.username, self.password)
         print 'fetching bugs'
         self.inactive_bugs = self.get_inactive_mentored_bugs()
         print 'reseting bugs'
         for bug in self.inactive_bugs:
-            pretty_json(bug)
+            message = ('The bug is assigned to %s, it is mentored '
+                       'by %s and has been inactive since %s' %
+                       (bug['assigned_to'], bug['mentors'], bug['last_change_time']))
+            print message
             print 'leaving reset messages on %r' % bug['id']
             print 'reverting %r to default assignee' % bug['id']
         print 'finished reseting bugs'
