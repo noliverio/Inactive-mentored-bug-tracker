@@ -84,9 +84,9 @@ class inactive_bug_tracker(object):
         self.inactive_bugs = self.get_inactive_mentored_bugs()
         print 'reseting bugs'
         for bug in self.inactive_bugs:
-            message = ('The bug is assigned to %s, it is mentored '
+            message = ('Bug %s is assigned to %s, it is mentored '
                        'by %s and has been inactive since %s' %
-                       (bug['assigned_to'], bug['mentors'], bug['last_change_time']))
+                       (bug ['id'], bug['assigned_to'], bug['mentors'], bug['last_change_time']))
             print message
             print 'leaving reset messages on %r' % bug['id']
             print 'reverting %r to default assignee' % bug['id']
