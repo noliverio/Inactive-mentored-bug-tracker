@@ -1,6 +1,8 @@
 # IMBT
 
-To run the script enter the pertinent information into login_info.py and run inactive_mentored_bugs_tracker.py from the command line.
+To run the script enter the pertinent information into login_info.py and run inactive_mentored_bugs_tracker.py live from the command line.
+
+If you want to do a dry run where the script will only find the bugs and print relavent information about them then run inactive_mentored_bug_tracker.py dry_run from the command line.
 
 Due to the nature of the bzrest library used this is not python 3 compatible.
 
