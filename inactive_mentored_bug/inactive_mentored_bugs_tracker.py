@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import bzrest.client
 import sys
 from sys import argv
